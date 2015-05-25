@@ -1,1 +1,2 @@
-Game/Bin/**/**/*.*
+Game/bin/*
+!Game/bin/.gitkeep
