@@ -9,6 +9,9 @@
 *.hh text eol=lf
 *.hpp text eol=lf
 *.inl text eol=lf
+*.py text eol=lf
+
+*.bat text eol=crlf
 
 *.sln text eol=crlf
 *.vcxproj text eol=crlf
