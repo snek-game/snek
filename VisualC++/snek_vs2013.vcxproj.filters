@@ -18,9 +18,24 @@
     <ClCompile Include="..\src\main.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\snek-pch.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\snek\linkSDL.h">
+    <ClInclude Include="..\include\snek\snek-config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="snek-deps-v120\include\snek\linkBoost.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="snek-deps-v120\include\snek\linkSDL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\snek\snek-dbg-console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\snek-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

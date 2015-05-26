@@ -11,7 +11,7 @@ git clone https://github.com/snek-game/snek-deps-%GETDEP_ARG%/
 goto noop
 
 :help
-set MSG="Usage: snekdep {v120,v130,Visual Studio 2013,Visual Studio 2015}"
+set MSG="Usage: snekdep {v120,v140,Visual Studio 2013,Visual Studio 2015}"
 echo %MSG:"=%
 echo.
 
