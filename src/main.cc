@@ -17,6 +17,6 @@ int /*SDL_*/main(int argc, char* argv[])
 {
     /* create debug console if necessary */
     SN_ALLOC_DEBUG_CONSOLE();
-    snek::Application app;
+    snek::Application app(argc, argv);
     return app.Run();
 }

@@ -4,12 +4,15 @@
 
 namespace snek
 {
-    class Application final
+    class Application
     {
     public:
-        Application();
-        Application(const Application&) = delete;
-        Application(Application&&) = delete;
+        Application(int argc, char** argv);
+
+    private:
+        Application(const Application&);
+
+    public:
         ~Application();
 
         int Run();

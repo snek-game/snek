@@ -1,31 +1,39 @@
+#pragma once
+
 #include "snek-config.h"
 
 #include <cstdlib>
 
 #include "ConvertEnum.h"
+#include "Point.h"
 
 namespace snek
 {
     enum class GridState : signed char
     {
-        MOVING_WEST =           signed char(-2),
-        MOVING_NORTH =          signed char(-1),
-        EMPTY =                 signed char(0),
-        MOVING_SOUTH =          signed char(1),
-        MOVING_EAST =           signed char(2),
-        ITEM, // item present
-        SPECIAL // special item present
+        WEST  =          signed char( -2 ),
+        NORTH =          signed char( -1 ),
+        EMPTY =          signed char(  0 ),
+        SOUTH =          signed char(  1 ),
+        EAST  =          signed char(  2 ),
+        FOOD
     };
 
     template <size_t Rows, size_t Columns>
     class Grid
     {
     public:
-        using State = GridState;
+        typedef GridState State;
+        static const size_t RowsCount;
+        static const size_t ColumnsCount;
     private:
         State states[Rows][Columns];
     public:
         Grid()
+        {
+        }
+
+        void Reset()
         {
             for (auto r = size_t(0); r < Rows; ++r)
             {
@@ -43,6 +51,13 @@ namespace snek
             return states[R][C];
         }
 
+        State& operator()(const Point& point)
+        {
+            SN_ASSERT(point.x < Rows && point.x >= 0);
+            SN_ASSERT(point.y < Columns && point.y >= 0);
+            return states[static_cast<size_t>(point.x)][static_cast<size_t>(point.y)];
+        }
+
         const State& operator()(size_t R, size_t C) const
         {
             SN_ASSERT(R < Rows);
@@ -50,25 +65,49 @@ namespace snek
             return states[R][C];
         }
 
+        const State& operator()(const Point& point) const
+        {
+            SN_ASSERT(point.x < Rows && point.x >= 0);
+            SN_ASSERT(point.y < Columns && point.y >= 0);
+            return states[static_cast<size_t>(point.x)][static_cast<size_t>(point.y)];
+        }
+
         inline bool IsEmpty(size_t R, size_t C) const
         {
             return (*this)(R, C) == State::EMPTY;
         }
 
-        inline bool IsItem(size_t R, size_t C) const
+        inline bool IsEmpty(const Point& point) const
         {
-            return (*this)(R, C) == State::ITEM;
+            return (*this)(point) == State::EMPTY;
         }
 
-        inline bool IsSpecial(size_t R, size_t C) const
+        inline bool IsFood(size_t R, size_t C) const
         {
-            return (*this)(R, C) == State::SPECIAL;
+            return (*this)(R, C) == State::FOOD;
         }
 
-        inline bool IsSnek(size_t R, size_t C) const
+        inline bool IsFood(const Point& point) const
+        {
+            return (*this)(point) == State::FOOD;
+        }
+
+        inline bool IsDirection(size_t R, size_t C) const
         {
             auto state_val = (+(*this)(R, C));
-            return (state <= signed char(2));
+            return (state_val && state_val <= signed char(2));
+        }
+
+        inline bool IsDirection(const Point& point) const
+        {
+            auto state_val = (+(*this)(point));
+            return (state_val && state_val <= signed char(2));
         }
     };
+
+    template <size_t Rows, size_t Columns>
+    const size_t Grid<Rows, Columns>::RowsCount = Rows;
+
+    template <size_t Rows, size_t Columns>
+    const size_t Grid<Rows, Columns>::ColumnsCount = Columns;
 }

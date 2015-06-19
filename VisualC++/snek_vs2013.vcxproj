@@ -69,25 +69,25 @@
     <LibraryPath>snek-deps-$(PlatformToolset)/lib/$(PlatformTarget)/$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
     <OutDir>../Game/bin/$(PlatformTarget)/$(Configuration)/</OutDir>
     <IntDir>tmp/$(PlatformTarget)/$(Configuration)/</IntDir>
-    <TargetName>snek</TargetName>
+    <TargetName>snek_$(PlatformTarget)_$(Configuration)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LibraryPath>snek-deps-$(PlatformToolset)/lib/$(PlatformTarget)/$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
     <OutDir>../Game/bin/$(PlatformTarget)/$(Configuration)/</OutDir>
     <IntDir>tmp/$(PlatformTarget)/$(Configuration)/</IntDir>
-    <TargetName>snek</TargetName>
+    <TargetName>snek_$(PlatformTarget)_$(Configuration)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LibraryPath>snek-deps-$(PlatformToolset)/lib/$(PlatformTarget)/$(Configuration);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
     <OutDir>../Game/bin/$(PlatformTarget)/$(Configuration)/</OutDir>
     <IntDir>tmp/$(PlatformTarget)/$(Configuration)/</IntDir>
-    <TargetName>snek</TargetName>
+    <TargetName>snek_$(PlatformTarget)_$(Configuration)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LibraryPath>snek-deps-$(PlatformToolset)/lib/$(PlatformTarget)/$(Configuration);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
     <OutDir>../Game/bin/$(PlatformTarget)/$(Configuration)/</OutDir>
     <IntDir>tmp/$(PlatformTarget)/$(Configuration)/</IntDir>
-    <TargetName>snek</TargetName>
+    <TargetName>snek_$(PlatformTarget)_$(Configuration)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -175,10 +175,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Application.cc" />
+    <ClCompile Include="..\src\Application_p.cc" />
     <ClCompile Include="..\src\Clock.cc" />
     <ClCompile Include="..\src\Duration.cc" />
+    <ClCompile Include="..\src\GameLoop_p.cc" />
     <ClCompile Include="..\src\main.cc" />
     <ClCompile Include="..\src\snek-pch.cc" />
+    <ClCompile Include="..\src\Texture.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\snek-pch.h" />
@@ -187,8 +190,13 @@
     <ClInclude Include="..\include\snek\ConvertEnum.h" />
     <ClInclude Include="..\include\snek\Duration.h" />
     <ClInclude Include="..\include\snek\Grid.h" />
+    <ClInclude Include="..\include\snek\Point.h" />
     <ClInclude Include="..\include\snek\Snake.h" />
     <ClInclude Include="..\include\snek\snek-dbg-console.h" />
+    <ClInclude Include="..\include\snek\Texture.h" />
+    <ClInclude Include="..\src\Application_p.h" />
+    <ClInclude Include="..\src\Constants_p.h" />
+    <ClInclude Include="..\src\GameLoop_p.h" />
     <ClInclude Include="snek-deps-v120\include\snek\linkSDL.h" />
     <ClInclude Include="..\include\snek\snek-config.h" />
     <ClInclude Include="snek-deps-v120\include\snek\linkBoost.h" />
@@ -198,7 +206,11 @@
     <ItemGroup>
       <DependenciesBinFiles Include="snek-deps-$(PlatformToolset)/bin/$(PlatformTarget)/$(Configuration)/*.dll" />
     </ItemGroup>
-    <Copy SourceFiles="@(DependenciesBinFiles)" DestinationFiles="@(DependenciesBinFiles->'$(OutDir)%(RecursiveDir)%(Filename)%(Extension)')" OverwriteReadOnlyFiles="true" />
+    <Copy SourceFiles="@(DependenciesBinFiles)" DestinationFiles="@(DependenciesBinFiles->'$(OutDir)%(RecursiveDir)%(Filename)%(Extension)')" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="true" />
+    <ItemGroup>
+      <ResFiles Include="../res/*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ResFiles)" DestinationFiles="@(ResFiles->'$(OutDir)res/%(RecursiveDir)%(Filename)%(Extension)')" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="true" />
   </Target>
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

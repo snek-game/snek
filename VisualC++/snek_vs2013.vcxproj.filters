@@ -13,12 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Private">
+      <UniqueIdentifier>{79e28825-6e4b-4072-869d-78feb6e09c36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Private">
+      <UniqueIdentifier>{7100bf83-7abc-4718-b72d-48965e4a7a8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Config">
+      <UniqueIdentifier>{6528ec23-d191-407f-813a-6a92dfc60acb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Config">
+      <UniqueIdentifier>{07c07b4e-83ea-420d-97c2-7fc666b4232f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\snek-pch.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Application.cc">
@@ -30,21 +39,24 @@
     <ClCompile Include="..\src\Duration.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Application_p.cc">
+      <Filter>Source Files\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GameLoop_p.cc">
+      <Filter>Source Files\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\snek-pch.cc">
+      <Filter>Source Files\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Texture.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\snek\snek-config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="snek-deps-v120\include\snek\linkBoost.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="snek-deps-v120\include\snek\linkSDL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\snek\snek-dbg-console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\snek-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\snek\Application.h">
@@ -56,14 +68,38 @@
     <ClInclude Include="..\include\snek\ConvertEnum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\snek\Snake.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\snek\Clock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\snek\Duration.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\snek\Point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\snek\Snake.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Application_p.h">
+      <Filter>Header Files\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GameLoop_p.h">
+      <Filter>Header Files\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\snek\snek-config.h">
+      <Filter>Header Files\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\snek\snek-dbg-console.h">
+      <Filter>Header Files\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\snek-pch.h">
+      <Filter>Header Files\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\snek\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Constants_p.h">
+      <Filter>Header Files\Private</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
